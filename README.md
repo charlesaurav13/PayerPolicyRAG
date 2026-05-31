@@ -16,13 +16,9 @@ python --version  # should be 3.13.x
 
 ## Installation
 
-Clone the repo and create a virtual environment:
+You will receive a `.zip` file containing the notebook and all required files. Extract it and install the dependencies:
 
 ```bash
-git clone https://github.com/charlesaurav13/Payer_Rag_ADS.git
-cd Payer_Rag_ADS
-python3.13 -m venv RAG_System
-source RAG_System/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -33,6 +29,22 @@ export GROQ_API_KEY=gsk_...
 ```
 
 On Kaggle, add `GROQ_API_KEY` via **Add-ons > Secrets** and enable **Attach to session**.
+
+---
+
+## Running the Pipeline
+
+Open `payer_policy_pipeline.ipynb` and run all cells in order.
+
+By default the pipeline processes **all PDFs** in the `pdfs/Sample_PsO_ADS_Track/` folder. To limit the number of PDFs, change `MAX_PDFS` in the last cell:
+
+```python
+MAX_PDFS = 5      # process first 5 PDFs
+MAX_PDFS = 1      # process just 1 PDF
+MAX_PDFS = None   # process all PDFs (default)
+```
+
+Results are written to `extraction_output.csv`. Re-running skips PDFs whose markdown already exists and skips brands already present in the CSV.
 
 ---
 
