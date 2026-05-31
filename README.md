@@ -103,10 +103,10 @@ The access score (1–100) is a weighted sum across all 12 parameters. **Higher 
 
 | Parameter | Weight | Scoring Logic |
 |-----------|--------|---------------|
-| Number of Steps through Brands | 20 | 0 steps → 1.0 · each step subtracts 0.3 |
+| Number of Steps through Brands | 10 | 0 steps → 1.0 · each step subtracts 0.3 |
 | Initial Authorization Duration | 15 | ≥12 months → 1.0 · 6–11 → 0.7 · 3–5 → 0.4 · <3 → 0.2 |
 | TB Test required | 15 | Not required → 1.0 · Required → 0.3 |
-| Age | 10 | ≤6 yrs → 1.0 · ≤12 → 0.9 · ≤18 → 0.7 · >18 → 0.4 |
+| Age | 20 | ≤6 yrs → 1.0 · ≤12 → 0.9 · ≤18 → 0.7 · >18 → 0.4 |
 | Number of Steps through Generic | 10 | Same as steps through brands |
 | Step through-Phototherapy | 5 | Not required → 1.0 · Required → 0.3 |
 | Step Therapy text present | 5 | No text / NA → 1.0 · Text present → 0.3 |
