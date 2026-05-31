@@ -1,3 +1,4 @@
+torch>=2.5.1
 transformers==4.57.6
 docling==2.96.0
 sentence-transformers==3.4.1
