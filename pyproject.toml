@@ -1,9 +1,0 @@
-[project]
-name = "payer-policy-final"
-version = "0.1.0"
-description = "PDF cleaning and Markdown conversion pipeline"
-requires-python = ">=3.12"
-dependencies = [
-    "pymupdf==1.27.2.3",
-    "docling==2.96.0",
-]

@@ -6,19 +6,19 @@ End-to-end RAG pipeline that extracts **12 Prior Authorization (PA) parameters**
 
 ## Python Version
 
-Requires **Python 3.12+**. Python 3.14+ is not supported (tokenizers build fails).
-
-```bash
-python --version  # should be 3.12.x or 3.13.x
-```
-
----
+Requires **Python 3.13+**. Python 3.14+ is not supported (tokenizers build fails).
 
 ## Installation
-
 ```bash
+python --version  # should be 3.12.x or 3.13.x
+
+To install in macos,
+brew install python@3.13
+python3.13 -m venv py313
+source py313/bin/activate
 pip install -r requirements.txt
 ```
+---
 
 Set your API key — copy `.env.example` to `.env` and fill in your key:
 ```bash
@@ -77,7 +77,10 @@ PDF
  │
  └─ CSV Output      filename, brand, 12 parameters, access_score
 ```
-
+Used PyMuPDF cleans the PDF in memory (headers/footers/links/credentials), then Docling converts it to Markdown with table detection and if tables are complex then used PyMuPDF again.
+Implemented rate limits for API calling.
+We processed the BRANDS and then we maintain BRAND,chunk_id, chunks page no, to be given to the parameter parse, so we reduce our token as well as we give relevant chunks.
+Used embedding model 384 because of fast processing and opensource.
 ---
 
 ## LLMs
