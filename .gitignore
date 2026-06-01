@@ -2,6 +2,7 @@
 pdfs/
 markdown_output/
 chroma_store/
+model_cache/
 extraction_output.csv
 PA_Business_Rules.csv
 

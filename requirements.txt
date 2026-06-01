@@ -1,36 +1,12 @@
-# ── Payer Policy PA Extraction Pipeline ──────────────────────────────────────
-# Local (Mac M2, Python 3.12): use exact versions below
-# Kaggle              : install cell in notebook pins compatible versions
-# Install:  pip install -r requirements.txt
-
-# PDF processing
-pymupdf==1.27.2.3          # imports as fitz; PDF clean (strip headers/footers/links)
-docling==2.96.0            # PDF -> Markdown conversion with table detection
-
-# Vector store & retrieval
-chromadb==1.5.9            # persistent vector store (PersistentClient API)
-rank-bm25==0.2.2           # BM25 sparse retrieval
-sentence-transformers==5.5.1  # BAAI/bge-base-en-v1.5 embeddings + bge-reranker-v2-m3
-transformers==5.9.0        # required by sentence-transformers and docling
-
-# ML / numerical
-torch==2.12.0              # embeddings run on GPU if available
-numpy==2.4.6
-
-# LLM clients
-openai==2.38.0             # OpenRouter (via base_url) and standard OpenAI
-groq==1.4.0                # Groq API client
-
-# Utilities
-tenacity==9.1.4            # retry logic with exponential backoff
-python-dotenv==1.2.2       # load .env for local development
-tqdm==4.67.3               # progress bars
-
-# ── Kaggle-compatible versions (pin these if running on Kaggle) ───────────────
-# transformers>=4.41.0,<4.47.0
-# sentence-transformers>=2.7.0,<4.0.0
-# docling>=2.5.0,<3.0.0
-# chromadb>=0.4.22,<1.0.0
-# openai>=1.0.0,<2.0.0
-# groq>=0.9.0,<1.0.0
+torch>=2.5.1
+transformers==4.57.6
+docling==2.96.0
+sentence-transformers==3.4.1
+chromadb==0.6.3
+rank-bm25==0.2.2
+openai==1.84.0
+tenacity==9.1.4
+pymupdf==1.27.2.3
+tqdm==4.67.3
 pdfplumber==0.11.4
+python-dotenv==1.0.1
