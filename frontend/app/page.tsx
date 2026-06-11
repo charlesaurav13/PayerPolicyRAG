@@ -173,10 +173,11 @@ function DropZone({ onFiles }: { onFiles: (f: File[]) => void }) {
 
 // ── Main Page ──────────────────────────────────────────────────────────────
 export default function Home() {
-  const [files,   setFiles]   = useState<File[]>([]);
-  const [status,  setStatus]  = useState<JobStatus | null>(null);
-  const [results, setResults] = useState<BrandResult[]>([]);
-  const [error,   setError]   = useState<string | null>(null);
+  const [files,       setFiles]       = useState<File[]>([]);
+  const [status,      setStatus]      = useState<JobStatus | null>(null);
+  const [results,     setResults]     = useState<BrandResult[]>([]);
+  const [error,       setError]       = useState<string | null>(null);
+  const [submitting,  setSubmitting]  = useState(false);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const addFiles = useCallback((incoming: File[]) => {
@@ -213,10 +214,11 @@ export default function Home() {
   };
 
   const analyze = async () => {
-    if (!files.length) return;
+    if (!files.length || submitting) return;
     setError(null);
     setResults([]);
     setStatus(null);
+    setSubmitting(true);
     const form = new FormData();
     files.forEach(f => form.append("files", f));
     try {
@@ -226,6 +228,8 @@ export default function Home() {
       startPolling(job_id);
     } catch (e) {
       setError(String(e));
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -302,11 +306,18 @@ export default function Home() {
 
             <button
               onClick={analyze}
-              disabled={!files.length}
+              disabled={!files.length || submitting}
               className="self-start bg-indigo-600 text-white font-semibold px-7 py-3 rounded-xl
-                hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
+                hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm flex items-center gap-2"
             >
-              Analyze {files.length > 0 ? `${files.length} PDF${files.length > 1 ? "s" : ""}` : "PDFs"}
+              {submitting ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                  Sending to backend…
+                </>
+              ) : (
+                <>Analyze {files.length > 0 ? `${files.length} PDF${files.length > 1 ? "s" : ""}` : "PDFs"}</>
+              )}
             </button>
           </section>
         )}

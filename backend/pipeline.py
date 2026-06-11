@@ -987,8 +987,8 @@ def run_pipeline(
         if brand_data.get("policy_has_pso") != "Yes" or not brands:
             return []
 
-        _progress(f"Extracting parameters for {len(brands)} brand(s) (70B model)...")
-        llm_70b = LLMClient("70b", fallback=llm_8b)
+        _progress(f"Extracting parameters for {len(brands)} brand(s)...")
+        llm_70b = LLMClient("8b")
         rows: List[Dict[str, str]] = []
 
         seen_brands: set = set()
