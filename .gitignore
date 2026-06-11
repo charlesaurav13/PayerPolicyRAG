@@ -1,10 +1,12 @@
-# Heavy data files
+# Heavy data / generated files
 pdfs/
 markdown_output/
 chroma_store/
 model_cache/
 extraction_output.csv
 PA_Business_Rules.csv
+submission.csv
+backend/model_cache/
 
 # Python cache
 __pycache__/
@@ -12,15 +14,23 @@ __pycache__/
 *.pyo
 .pytest_cache/
 
-# Virtual env / uv
+# Virtual env
 .venv/
+venv/
 *.egg-info/
 
-# Secrets
+# Secrets — never commit API keys
 .env
+backend/.env
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
 
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+
 # OS
 .DS_Store
+Thumbs.db
