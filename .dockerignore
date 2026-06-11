@@ -1,0 +1,13 @@
+venv/
+frontend/
+frontend/node_modules/
+frontend/.next/
+backend/model_cache/
+backend/__pycache__/
+backend/.env
+markdown_output/
+chroma_store/
+Sample_PsO_ADS_Track/
+.git/
+*.pyc
+.DS_Store

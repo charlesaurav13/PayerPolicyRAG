@@ -196,6 +196,33 @@ curl http://localhost:8001/api/results/<job_id>
 
 ---
 
+## Deployment
+
+### Backend → Railway
+
+1. Go to [railway.app](https://railway.app) → **New Project → Deploy from GitHub repo**
+2. Select `charlesaurav13/PayerPolicyRAG`
+3. Railway auto-detects the `Dockerfile` in the root
+4. Add environment variable in Railway dashboard:
+   ```
+   GROQ_API_KEY=gsk_...
+   ```
+5. Copy the generated Railway URL (e.g. `https://payerpolicy-backend.up.railway.app`)
+
+### Frontend → Vercel
+
+1. Go to [vercel.com](https://vercel.com) → **Add New Project → Import from GitHub**
+2. Select `charlesaurav13/PayerPolicyRAG`, set **Root Directory** to `frontend`
+3. Add environment variable in Vercel dashboard:
+   ```
+   NEXT_PUBLIC_API_URL=https://payerpolicy-backend.up.railway.app
+   ```
+4. Deploy — Vercel gives you a live URL instantly
+
+> **Note:** `NEXT_PUBLIC_API_URL` is baked into the frontend at build time. After changing it in Vercel, trigger a redeploy.
+
+---
+
 ## Notebook (original batch pipeline)
 
 The original Jupyter pipeline is preserved at `payer_policy_pipeline.ipynb`. It processes all PDFs in `Sample_PsO_ADS_Track/` and writes `submission.csv`.

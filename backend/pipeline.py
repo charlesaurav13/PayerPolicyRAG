@@ -7,11 +7,14 @@ Models (BGE embedder + cross-encoder) are loaded once via preload_models().
 import os
 import sys
 
-# Make Java (required by opendataloader-pdf) findable
-_JAVA_HOME = "/opt/homebrew/opt/openjdk@21"
-os.environ.setdefault("JAVA_HOME", _JAVA_HOME)
-if _JAVA_HOME + "/bin" not in os.environ.get("PATH", ""):
+# Make Java (required by opendataloader-pdf) findable.
+# On Docker/Linux, java is already on PATH — do nothing.
+# On macOS dev (Homebrew), add the keg-only openjdk path.
+import shutil as _shutil
+if not _shutil.which("java"):
+    _JAVA_HOME = "/opt/homebrew/opt/openjdk@21"
     os.environ["PATH"] = _JAVA_HOME + "/bin:" + os.environ.get("PATH", "")
+    os.environ.setdefault("JAVA_HOME", _JAVA_HOME)
 
 import csv
 import hashlib
